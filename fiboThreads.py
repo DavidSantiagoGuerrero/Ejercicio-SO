@@ -31,34 +31,37 @@ class FiboThread(threading.Thread):
 def dividir_en(secuencia, divisiones):
     intervalos = []
     for i in range(0, len(secuencia), divisiones):
-        chunk = secuencia[i:i+divisiones]  
+        chunk = secuencia[i:i + divisiones]
         intervalos.append(chunk)
     return intervalos
 
 def main_threads():
-    secuencia = [i for i in range(144)]  
-
-    num_hilos = 8  
+    secuencia = [i for i in range(144)]
+    num_hilos = 8
     divisiones = len(secuencia) // num_hilos
-
     particion = dividir_en(secuencia, divisiones)
-
-    print(f"Calculando el Fibonacci de {len(secuencia)} 
-
+    print(f"Calculando el Fibonacci de {len(secuencia)} números.")
     hilos = []
-    ts = time()
+    tiempos = []
 
     for x in range(num_hilos):
         print(f"Iniciando hilo {x} con {len(particion[x])} elementos.")
+        ts = time()
         hilo = FiboThread(particion[x], x)
         hilo.start()
         hilos.append(hilo)
+        hilo.join()
+        tiempo = time() - ts
+        tiempos.append(tiempo)
+        print(f"Se tardó: {tiempo}")
 
-    for x in range(num_hilos):
-        print(f"Esperando por hilo {x}")
-        hilos[x].join()
+    mayor_tiempo = max(tiempos)
+    menor_tiempo = min(tiempos)
+    promedio = sum(tiempos) / len(tiempos)
 
-    print(f"Tomo {time() - ts} segundos")
+    print(f"Mayor tiempo: {mayor_tiempo}")
+    print(f"Menor tiempo: {menor_tiempo}")
+    print(f"Promedio: {promedio:.8f}")
 
 if __name__ == "__main__":
     main_threads()
