@@ -4,12 +4,19 @@
 
 ### Tiempos fibonacciProcess
 Tomo 19.056018590927124
+
 Tomo 18.08937668800354
+
 Tomo 18.502657175064087
+
 Tomo 17.9516544342041
+
 Tomo 17.998212575912476 
+
 Mayor tiempo: 19.056018590927124 
+
 Menor tiempo: 18.08937668800354
+
 Promedio: 18.1508414
 
 ### Tiempos fibonacciSecuencial
