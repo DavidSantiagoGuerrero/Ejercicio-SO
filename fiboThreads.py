@@ -24,7 +24,7 @@ class HiloFibonacci(threading.Thread):
 
     def run(self):
         resultados = [calcular_fibonacci(n) for n in self.elementos]
-        print(f"[Hilo {self.id_hilo}] Resultados: {resultados}")
+        print(f"[Hilo {self.id_hilo}]: {resultados}")
 
 def dividir_vector(vector, num_partes):
     tamaño_parte = len(vector) // num_partes
@@ -41,7 +41,7 @@ def lanzar_hilos():
     print(f"Calculando Fibonacci de cada elemento del vector de tamaño {len(vector)}.")
 
     for i in range(num_hilos):
-        print(f"Iniciando hilo {i} con {len(particiones[i])} elementos.")
+        print(f"Hilo {i} con {len(particiones[i])} elementos.")
         tiempo_inicial = time()
         hilo = HiloFibonacci(particiones[i], i)
         hilo.start()
