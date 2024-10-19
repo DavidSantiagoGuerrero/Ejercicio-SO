@@ -5,63 +5,50 @@
 from time import time
 import threading
 
-def fibo(n):
-    if n == 0:
+def calcular_fibonacci(numero):
+    if numero == 0:
         return 0
-    elif n == 1:
+    elif numero == 1:
         return 1
     else:
         a, b = 0, 1
-        for _ in range(2, n + 1):
+        for _ in range(2, numero + 1):
             a, b = b, a + b
         return b
 
-class FiboThread(threading.Thread):
-    def __init__(self, nums, pid):
+class HiloFibonacci(threading.Thread):
+    def __init__(self, numero, id_hilo):
         threading.Thread.__init__(self)
-        self.nums = nums
-        self._pid = pid
+        self.numero = numero
+        self.id_hilo = id_hilo
 
     def run(self):
-        resultado = []
-        for n in self.nums:
-            resultado.append(fibo(n))
-        print(f"[Thread {self._pid}] Resultados: {resultado}")
+        resultado = calcular_fibonacci(self.numero)
+        print(f"[Hilo {self.id_hilo}] Resultado: {resultado}")
 
-def dividir_en(secuencia, divisiones):
-    intervalos = []
-    for i in range(0, len(secuencia), divisiones):
-        chunk = secuencia[i:i + divisiones]
-        intervalos.append(chunk)
-    return intervalos
-
-def main_threads():
-    secuencia = [i for i in range(144)]
-    num_hilos = 8
-    divisiones = len(secuencia) // num_hilos
-    particion = dividir_en(secuencia, divisiones)
-    print(f"Calculando el Fibonacci de {len(secuencia)} números.")
+def lanzar_hilos():
+    cantidad_hilos = 8
     hilos = []
-    tiempos = []
+    tiempos_ejecucion = []
 
-    for x in range(num_hilos):
-        print(f"Iniciando hilo {x} con {len(particion[x])} elementos.")
-        ts = time()
-        hilo = FiboThread(particion[x], x)
+    for i in range(cantidad_hilos):
+        print(f"Iniciando hilo {i}.")
+        tiempo_inicial = time()
+        hilo = HiloFibonacci(33, i)
         hilo.start()
         hilos.append(hilo)
         hilo.join()
-        tiempo = time() - ts
-        tiempos.append(tiempo)
-        print(f"Se tardó: {tiempo}")
+        tiempo_final = time() - tiempo_inicial
+        tiempos_ejecucion.append(tiempo_final)
+        print(f"Se tardó: {tiempo_final}")
 
-    mayor_tiempo = max(tiempos)
-    menor_tiempo = min(tiempos)
-    promedio = sum(tiempos) / len(tiempos)
+    mayor = max(tiempos_ejecucion)
+    menor = min(tiempos_ejecucion)
+    promedio = sum(tiempos_ejecucion) / len(tiempos_ejecucion)
 
-    print(f"Mayor tiempo: {mayor_tiempo}")
-    print(f"Menor tiempo: {menor_tiempo}")
+    print(f"Mayor tiempo: {mayor}")
+    print(f"Menor tiempo: {menor}")
     print(f"Promedio: {promedio:.8f}")
 
 if __name__ == "__main__":
-    main_threads()
+    lanzar_hilos()
