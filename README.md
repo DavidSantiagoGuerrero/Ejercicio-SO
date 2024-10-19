@@ -3,23 +3,21 @@
 - Cristian Daniel Guaza Mejia - 2372225
 
 ### Tiempos fibonacciProcess
+
+```python
 Tomo 19.056018590927124
-
 Tomo 18.08937668800354
-
 Tomo 18.502657175064087
-
 Tomo 17.9516544342041
-
 Tomo 17.998212575912476 
-
 Mayor tiempo: 19.056018590927124 
-
 Menor tiempo: 18.08937668800354
-
 Promedio: 18.1508414
+```
+
 
 ### Tiempos fibonacciSecuencial
+```python
 Se tardó: 72.87384748458862
 Se tardó: 72.40031886100769
 Se tardó: 71.52199530601501
@@ -28,8 +26,11 @@ Se tardó: 73.95034646987915
 Mayor tiempo: 73.95034646987915 
 Menor tiempo: 71.1541998386383
 Promedio: 72.26538722
+```
+
 
 ### Tiempos fibonacciThreads
+```python
 Iniciando hilo 0 con 18 elementos.
 [Thread 0] Resultados: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597]
 Se tardó: 0.00031757354736328125
@@ -57,3 +58,5 @@ Se tardó: 0.0006425380706787109
 Mayor tiempo: 0.0007903575897216797
 Menor tiempo: 0.00021314620971679688
 Promedio: 0.00044438
+```
+
