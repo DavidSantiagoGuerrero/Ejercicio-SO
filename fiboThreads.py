@@ -50,11 +50,13 @@ def lanzar_hilos():
         tiempo_final = time() - tiempo_inicial
         tiempos_ejecucion.append(tiempo_final)
         print(f"Se tardó: {tiempo_final}")
-
+   
+    tiempo = sum(tiempos_ejecucion)
     mayor = max(tiempos_ejecucion)
     menor = min(tiempos_ejecucion)
     promedio = sum(tiempos_ejecucion) / len(tiempos_ejecucion)
 
+    print(f"Tiempo total: {tiempo}")
     print(f"Mayor tiempo: {mayor}")
     print(f"Menor tiempo: {menor}")
     print(f"Promedio: {promedio:.8f}")
